@@ -5,6 +5,7 @@
  * -------------------------------------------------------------------
 */
 
+
 #include "LedBlink.hpp"
 
 // -------------------------------------------------------------------
@@ -35,7 +36,6 @@ String platform(){
     return "ESP32";
 #endif
 }
-
 // -------------------------------------------------------------------
 // Convierte un char a IP
 // -------------------------------------------------------------------
@@ -225,7 +225,7 @@ String SweetAlert(String TitleWeb, String SweetTitle, String SweetText, String S
                         "<html><meta charset='UTF-8'>"
                         "<title>AdminTools | "+ TitleWeb +"</title>"
                         "<meta content='width=device-width, initial-scale=1.0' name='viewport' />"
-                        "<link rel='icon' href='www/logo.png' type='image/x-icon'>"
+                        "<link rel='icon' href='www/esp32.png' type='image/x-icon'>"
                         "<link rel='stylesheet' href='www/bootstrap.css' />"
                         "<link rel='stylesheet' href='www/main.css' />"
                         "<link rel='stylesheet' href='www/MoneAdmin.css' />"
@@ -254,7 +254,7 @@ String SweetAlert(String TitleWeb, String SweetTitle, String SweetText, String S
                         "<html><meta charset='UTF-8'>"
                         "<title>AdminTools | "+ TitleWeb +"</title>"
                         "<meta content='width=device-width, initial-scale=1.0' name='viewport' />"
-                        "<link rel='icon' href='www/logo.png' type='image/x-icon'>"
+                        "<link rel='icon' href='www/esp32.png' type='image/x-icon'>"
                         "<link rel='stylesheet' href='www/bootstrap.css' />"
                         "<link rel='stylesheet' href='www/main.css' />"
                         "<link rel='stylesheet' href='www/MoneAdmin.css' />"
@@ -293,7 +293,7 @@ String SweetAlert(String TitleWeb, String SweetTitle, String SweetText, String S
                         "<html><meta charset='UTF-8'>"
                         "<title>AdminTools | "+ TitleWeb +"</title>"
                         "<meta content='width=device-width, initial-scale=1.0' name='viewport' />"
-                        "<link rel='icon' href='www/logo.png' type='image/x-icon'>"
+                        "<link rel='icon' href='www/esp32.png' type='image/x-icon'>"
                         "<link rel='stylesheet' href='www/bootstrap.css' />"
                         "<link rel='stylesheet' href='www/main.css' />"
                         "<link rel='stylesheet' href='www/MoneAdmin.css' />"
@@ -319,4 +319,36 @@ String SweetAlert(String TitleWeb, String SweetTitle, String SweetText, String S
                     "</html>";
     }
     return SweetAlert;
+}
+
+// -------------------------------------------------------------------
+// Control de los Relay desde MQTT & WS
+// -------------------------------------------------------------------
+
+boolean settingsSaveRelays();
+
+void OnOffRelays(String command){
+
+    DynamicJsonDocument JsonDoc(1024);
+
+    deserializeJson(JsonDoc, command);
+    
+    if(JsonDoc["protocol"] == "WS"){
+        log("Info: Commando por WS => " + command);
+    }else{
+        log("Info: Commando por MQTT => " + command);
+    }
+    	
+    serializeJsonPretty(JsonDoc, Serial);
+
+    if (JsonDoc["value"]){
+        digitalWrite(JsonDoc["output"] == "RELAY1" ? RELAY1 : RELAY2, HIGH);
+        JsonDoc["output"] == "RELAY1" ? Relay01_status = HIGH : Relay02_status = HIGH ;
+    }else {
+        digitalWrite(JsonDoc["output"] == "RELAY1" ? RELAY1 : RELAY2, LOW);
+        JsonDoc["output"] == "RELAY1" ? Relay01_status = LOW : Relay02_status = LOW ;
+    }
+
+    settingsSaveRelays();    
+
 }

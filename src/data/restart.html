@@ -1,16 +1,15 @@
 <!DOCTYPE html>
- <html lang="es"> 
-
+<html lang="es">
 <!-- BEGIN HEAD-->
+
 <head>
-   
     <meta charset="UTF-8" />
     <title>Novaverde | Reiniciar</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 	<meta content="Sistema de visualización y control para BSF" name="description" />
-	<meta content="Juan Manuel Salazar" name="author" />
+    <meta content="Juan Manuel Salazar" name="author" />
+    <!-- Favicon icon -->
     <link rel="icon" href="www/logo.png" type="image/x-icon">
-    <!-- GLOBAL STYLES -->
     <!-- GLOBAL STYLES -->
     <link rel="stylesheet" href="www/bootstrap.css" />
     <link rel="stylesheet" href="www/main.css" />
@@ -18,16 +17,17 @@
     <link rel="stylesheet" href="www/MoneAdmin.css" />
     <link rel="stylesheet" href="www/font-awesome.css" />
     <link rel="stylesheet" href="www/bootstrap-switch.css" />
+    <link rel="stylesheet" href="www/sweetalert2.min.css" />
     <link rel="stylesheet" href="www/styles.css" />
     <!--END GLOBAL STYLES -->
 </head>
-    <!-- END  HEAD-->
-    <!-- BEGIN BODY-->
-<body class="padTop53 " >
+<!-- END  HEAD-->
+<!-- BEGIN BODY-->
 
-     <!-- MAIN WRAPPER -->
+<body class="padTop53 " onload="visu()">
+    <!-- MAIN WRAPPER -->
     <div id="wrap">
-         <!-- HEADER SECTION -->
+        <!-- HEADER SECTION -->
         <div id="top">
             <nav class="navbar navbar-inverse navbar-fixed-top " style="padding-top: 10px;">
                 <a data-original-title="Show/Hide Menu" data-placement="bottom" data-tooltip="tooltip" class="accordion-toggle btn btn-primary btn-sm visible-xs" data-toggle="collapse" href="#menu" id="menu-toggle">
@@ -36,8 +36,8 @@
                 <!-- LOGO SECTION -->
                 <header class="navbar-header">
                     <a href="/" class="navbar-brand">
-                    <img src="www/logo2.png" alt="" width="50%" height="50%" /></a>
-                </header>
+                        <img src="www/logo2.png" alt="" width="50%" height="50%" /></a>
+                    </header>
                 <!-- END LOGO SECTION -->
                 <ul class="nav navbar-top-links navbar-right">
                     <!--ADMIN SETTINGS SECTIONS -->
@@ -46,7 +46,8 @@
                             <i class="icon-user "></i>&nbsp; <i class="icon-chevron-down "></i>
                         </a>
                         <ul class="dropdown-menu dropdown-user">
-                            <li><a href="esp-admin"><i class="icon-user"></i> Usuario </a>
+                            <li>
+                                <a href="esp-admin"><i class="icon-user"></i> Usuario </a>
                             </li>
                             <li class="divider"></li>
                             <li><a href="esp-logout"><i class="icon-signout"></i> Salir </a>
@@ -59,53 +60,56 @@
         </div>
         <!-- END HEADER SECTION -->
         <!-- MENU SECTION -->
-       <div id="left">
+        <div id="left">
             <div class="media user-media well-small">
-                <a class="user-link" href="#">
+                <a class="user-link" href="/">
                     <img class="media-object img-thumbnail user-img" alt="User Picture" src="www/logo.png" width="50%" height="50%"/>
                 </a>
                 <br />
                 <div class="media-body">
-                    <h5 class="media-heading">#platform#</h5>
-                    <ul class="list-unstyled user-info">                 
+                    <h5 class="media-heading"> #platform#</h5>
+                    <ul class="list-unstyled user-info">
                         <li>
-                             <a class="btn btn-success btn-xs btn-circle" style="width: 10px;height: 12px;"></a> Online                         
-                        </li>                      
+                            <a class="btn btn-success btn-xs btn-circle" style="width: 10px;height: 12px;"></a> Online
+                        </li>
                     </ul>
                 </div>
                 <br />
             </div>
-            <ul id="menu" class="collapse">                
+            <ul id="menu" class="collapse">
                 <li class="panel">
-                    <a href="/" >
-                        <i class="icon-table"></i> Estado	                        
-                    </a>                   
+                    <a href="/">
+                        <i class="icon-th-large"></i> Estado
+                    </a>
                 </li>
                 <li class="panel">
                     <a href="esp-wifi">
-                        <i class="icon-signal"></i> WiFi	                        
-                    </a>                   
+                        <i class="icon-signal"></i> WIFI
+                    </a>
                 </li>
                 <li class="panel">
-                    <a href="esp-mqtt" >
-                        <i class="icon-sitemap"></i> MQTT                        
-                    </a>                   
+                    <a href="esp-mqtt">
+                        <i class="icon-sitemap"></i> MQTT
+                    </a>
                 </li>
                 <li class="panel active">
                     <a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#component-nav">
-                        <i class="icon-cog"> </i> Administrar
+                        <i class=" icon-cog"> </i> Administrar
                         <span class="pull-right">
-                          <i class="icon-angle-left"></i>
-                        </span>
+                          <i class="icon-angle-left"></i>       
                     </a>
-                    <ul class="collapse" id="component-nav">                      
+                    <ul class="collapse" id="component-nav">
                         <li class=""><a href="esp-device"><i class="icon-angle-right"></i> Dispositivo </a></li>
-                         <li class=""><a href="esp-restore"><i class="icon-angle-right"></i> Ajustes Fabrica </a></li>
+                        <li class=""><a href="esp-restore"><i class="icon-angle-right"></i> Ajustes predeterminados de fábrica </a></li>
                         <li class=""><a href="esp-restart"><i class="icon-angle-right"></i> Reinicio </a></li>
                         <li class=""><a href="esp-admin"><i class="icon-angle-right"></i> Contraseña </a></li>
                     </ul>
                 </li>
-                <li><a href="esp-logout"><i class="icon-signout"></i> Salir </a></li>
+                <li class="panel">
+                    <a href="esp-logout">
+                        <i class="icon-signout"></i> Salir
+                    </a>
+                </li>
             </ul>
         </div>
         <!--END MENU SECTION -->
@@ -114,41 +118,56 @@
             <div class="inner" style="min-height:1200px;">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h2>Reiniciar</h2>
+                        <h2> Reiniciar</h2>
                     </div>
                 </div>
-            <hr/>
+            <hr>
+ 
+            <!--END BLOCK SECTION -->
             <div class="col-lg-12">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <i class="icon-spinner"></i> Dar click en el siguiente boton para Reiniciar
+                        <i class="icon-spinner"></i> Dar clic en el siguiente botón para Reiniciar el dispositivo.
                     </div>
                     <div class="panel-body">
                         <br>
-                        <button class="btn btn-warning btn-lg" id="btn">
+                        <button class="btn btn-warning btn-lg" id="btn" onclick="reiniciar();">
                             <i class="icon-spinner icon-white"></i> Reiniciar
-                        </button>  
-
-                    </div>
-                </div>
-            </div>
+                        </button> 
+                        <div id="visu">
+                            <br>
+                            <h3>Reiniciando en <span id="time" class="text-primary"> -- </span> segundos</h3>
+                        <div class="progress progress-striped active">
+                            <div class="progress-bar progress-bar-success" id="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                <span class="label label-default" id="pregressvalue"></span>
+                            </div>
+                        </div>
         </div>
-       
-       <!--END PAGE CONTENT -->
+
     </div>
-     <!--END MAIN WRAPPER -->
-   <!-- FOOTER -->
+    </div>
+    </div>
+    </div>
+    </div>
+    <!--END PAGE CONTENT -->
+    </div>
+    <!-- END RIGHT STRIP  SECTION -->
+    </div>
+    <!--END MAIN WRAPPER -->
+    <!-- FOOTER -->
     <div id="footer">
         <p>&copy;  Novaverde Control System &nbsp;2023 &nbsp;</p>
     </div>
     <!--END FOOTER -->
-     <!-- GLOBAL SCRIPTS -->
+    <!-- GLOBAL SCRIPTS -->
     <script src="www/jquery-2.0.3.min.js"></script>
-     <script src="www/bootstrap.min.js"></script>
+    <script src="www/bootstrap.min.js"></script>
     <script src="www/modernizr-2.6.2.min.js"></script>
     <script src="www/bootstrap-switch.min.js"></script>
+    <script src="www/sweetalert2.min.js"></script>
     <script src="www/scripts.js"></script>
     <!-- END GLOBAL SCRIPTS -->
 </body>
-    <!-- END BODY-->    
+<!-- END BODY-->
+
 </html>

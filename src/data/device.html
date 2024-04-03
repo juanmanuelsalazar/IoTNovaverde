@@ -9,16 +9,16 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 	<meta content="Sistema de visualización y control para BSF" name="description" />
 	<meta content="Juan Manuel Salazar" name="author" />
-    <link rel="icon" href="logo.png" type="image/x-icon">
+    <link rel="icon" href="www/logo.png" type="image/x-icon">
     <!-- GLOBAL STYLES -->
     <!-- GLOBAL STYLES -->
-    <link rel="stylesheet" href="bootstrap.css" />
-    <link rel="stylesheet" href="main.css" />
-    <link rel="stylesheet" href="theme.css" />
-    <link rel="stylesheet" href="MoneAdmin.css" />
-    <link rel="stylesheet" href="font-awesome.css" />
-    <link rel="stylesheet" href="bootstrap-switch.css" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="www/bootstrap.css" />
+    <link rel="stylesheet" href="www/main.css" />
+    <link rel="stylesheet" href="www/theme.css" />
+    <link rel="stylesheet" href="www/MoneAdmin.css" />
+    <link rel="stylesheet" href="www/font-awesome.css" />
+    <link rel="stylesheet" href="www/bootstrap-switch.css" />
+    <link rel="stylesheet" href="www/styles.css" />
     <!--END GLOBAL STYLES -->
 </head>
     <!-- END  HEAD-->
@@ -36,7 +36,7 @@
                 <!-- LOGO SECTION -->
                 <header class="navbar-header">
                     <a href="/" class="navbar-brand">
-                    <img src="logo2.png" alt="" width="50%" height="50%" /></a>
+                    <img src="www/logo2.png" alt="" width="50%" height="50%" /></a>
                 </header>
                 <!-- END LOGO SECTION -->
                 <ul class="nav navbar-top-links navbar-right">
@@ -62,11 +62,11 @@
        <div id="left">
             <div class="media user-media well-small">
                 <a class="user-link" href="#">
-                    <img class="media-object img-thumbnail user-img" alt="User Picture" src="logo.png" width="50%" height="50%"/>
+                    <img class="media-object img-thumbnail user-img" alt="User Picture" src="www/logo.png" width="50%" height="50%"/>
                 </a>
                 <br />
                 <div class="media-body">
-                    <h5 class="media-heading">Novaverde</h5>
+                    <h5 class="media-heading">#platform#</h5>
                     <ul class="list-unstyled user-info">                 
                         <li>
                              <a class="btn btn-success btn-xs btn-circle" style="width: 10px;height: 12px;"></a> Online                         
@@ -126,19 +126,19 @@
                     <div class="panel-body">
                         <br>
                         
-                        <form class="form-horizontal">
+                        <form class="form-horizontal" name="esp-device" action="esp-device" method="POST">
 
                             <div class="form-group">
                                 <label for="serie" class="control-label col-lg-3">Número de Serie:</label>
                                 <div class="col-lg-5">
-                                    <input type="text" id="serie" value="esp123456789" readonly class="form-control" />
+                                    <input type="text" id="serie" value="#serie#" readonly class="form-control" />
                                 </div>
                             </div>
 
                             <div class="form-group" id="form_id">
                                 <label for="id" class="control-label col-lg-3">Identificación del Dispositivo :</label>
                                 <div class="col-lg-5">
-                                    <input type="text" id="id" name="id" value="adminesp32" placeholder="Identificación del Dispositivo" class="form-control" />
+                                    <input type="text" id="id" name="id" value="#id#" placeholder="Identificación del Dispositivo" class="form-control" />
                                 </div>
                             </div>
                      
@@ -164,11 +164,11 @@
     </div>
     <!--END FOOTER -->
      <!-- GLOBAL SCRIPTS -->
-    <script src="jquery-2.0.3.min.js"></script>
-     <script src="bootstrap.min.js"></script>
-    <script src="modernizr-2.6.2.js"></script>
-    <script src="bootstrap-switch.min.js"></script>
-    <script src="scripts.js"></script>
+    <script src="www/jquery-2.0.3.min.js"></script>
+     <script src="www/bootstrap.min.js"></script>
+    <script src="www/modernizr-2.6.2.min.js"></script>
+    <script src="www/bootstrap-switch.min.js"></script>
+    <script src="www/scripts.js"></script>
     <!-- END GLOBAL SCRIPTS -->
 </body>
     <!-- END BODY-->    

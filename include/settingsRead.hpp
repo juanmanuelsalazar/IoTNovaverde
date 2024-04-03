@@ -9,7 +9,8 @@
 // Leer configuraciones de los Parametros WIFI
 // -------------------------------------------------------------------
 boolean settingsReadWiFi(){
-    StaticJsonDocument<500> jsonConfig;
+    //StaticJsonDocument<768> jsonConfig;    
+    StaticJsonDocument<capacitywifi> jsonConfig;
     File file = SPIFFS.open("/settingwifi.json", "r");
     if(deserializeJson(jsonConfig, file)){
         // Si falla la lectura inicia valores por defecto
@@ -73,7 +74,7 @@ boolean settingsReadMQTT(){
 // Leer estados de los Relays
 // -------------------------------------------------------------------
 boolean settingsReadRelays(){
-    StaticJsonDocument<200> jsonConfig;
+    StaticJsonDocument<capacityrelays> jsonConfig;
     File file = SPIFFS.open("/settingrelays.json", "r");
     if (deserializeJson(jsonConfig, file)){
         // Si falla la lectura inicia valores por defecto
@@ -87,4 +88,25 @@ boolean settingsReadRelays(){
         log("Info: Lectura de los Relay correcta");
         return true;
     } 
+}
+// -------------------------------------------------------------------
+// Leer www_username/password
+// -------------------------------------------------------------------
+boolean settingsReadAdmin(){
+    // Lee el Usuario y Contraseña
+    StaticJsonDocument<capacityadmin> jsonConfig;
+    File file = SPIFFS.open("/settingadmin.json", "r");
+    if (deserializeJson(jsonConfig, file)){
+        // Si falla la lectura inicia valores por defecto
+        settingsResetAdmin();
+        log("Error: Falló la lectura del Usuario y Contraseña, tomando valores por defecto");
+        return false;
+    }else{
+        /* ---------- Usuario y Contraseña ------------ */
+        strlcpy(www_username, jsonConfig["www_username"], sizeof(www_username));
+        strlcpy(www_password, jsonConfig["www_password"], sizeof(www_password));
+        file.close();
+        log("Info: Lectura del Usuario y Contraseña WWW correcta");
+        return true;
+    }
 }

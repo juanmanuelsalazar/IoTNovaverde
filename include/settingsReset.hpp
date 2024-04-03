@@ -14,8 +14,10 @@ void settingResetWiFi(){
     bootCount = 0;
     /* ------------------- CLIENTE -------------------- */
     wifi_staticIP = false;
-    strlcpy(wifi_ssid, "NOVAVERDE", sizeof(wifi_ssid));
-    strlcpy(wifi_passw, "Rec1m3d*2023", sizeof(wifi_passw));
+    //strlcpy(wifi_ssid, "NOVAVERDE", sizeof(wifi_ssid));
+    strlcpy(wifi_ssid, "doky", sizeof(wifi_ssid));
+    //strlcpy(wifi_passw, "Rec1m3d*2023", sizeof(wifi_passw));
+    strlcpy(wifi_passw, "nina3392624", sizeof(wifi_passw));
     strlcpy(wifi_ip_static, "192.168.0.150", sizeof(wifi_ip_static));
     strlcpy(wifi_gateway, "192.168.0.1", sizeof(wifi_gateway));
     strlcpy(wifi_subnet, "255.255.255.0", sizeof(wifi_subnet));
@@ -49,4 +51,11 @@ void settingsResetRelays(){
     Relay01_status = LOW;
     Relay02_status = LOW;
 }
-
+// -------------------------------------------------------------------
+// Valores por defecto www_username/password
+// -------------------------------------------------------------------
+void settingsResetAdmin(){
+    // Define configuración por defecto Usuario y Contraseña WWW
+    strlcpy(www_username, "juan20", sizeof(www_username));
+    strlcpy(www_password, "admin", sizeof(www_password));
+}
